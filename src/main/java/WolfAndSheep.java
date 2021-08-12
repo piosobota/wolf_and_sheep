@@ -6,11 +6,16 @@ public class WolfAndSheep {
     public static void main(String[] args) {
         int boardSize = -1;
         Board board = new Board();
+        GameMaster gameMaster = new GameMaster();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Witaj w Grze Wilk i Owca !!!!");
         System.out.println("by Emil Burdach and Piotr Sobota");
         System.out.println();
-        board.boardSizeQuestion(scanner);
+        board.setBoardSize(board.boardSizeQuestion(scanner));
+        gameMaster.setSheepCount(gameMaster.howManySheeps(board.getBoardSize()));
+        gameMaster.setWolfCount(gameMaster.howManyWolfs());
+        System.out.println(gameMaster.getSheepCount());
+        System.out.println(gameMaster.getWolfCount());
 
         }
 

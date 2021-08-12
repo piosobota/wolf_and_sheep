@@ -2,6 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Board {
+    private int boardSize;
     public int boardSizeQuestion(Scanner scanner) {
         int boardSize = -1;
         System.out.print("Jak dużą planszę mam stworzyć? (Nie mniejszą niż  " + WolfAndSheep.MINIMAL_BOARD_SIZE + "  oraz parzystą ) : ");
@@ -19,6 +20,12 @@ public class Board {
                 scanner.next();
             }
         }
+        return boardSize;
+    }
+    public void setBoardSize(int boardSize){
+        this.boardSize = boardSize;
+    }
+    public int getBoardSize(){
         return boardSize;
     }
 }

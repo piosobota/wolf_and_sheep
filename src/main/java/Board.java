@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Board {
     private int boardSize;
+    private char[][] board;
     public int boardSizeQuestion(Scanner scanner) {
         int boardSize = -1;
         System.out.print("Jak dużą planszę mam stworzyć? (Nie mniejszą niż  " + WolfAndSheep.MINIMAL_BOARD_SIZE + "  oraz parzystą ) : ");

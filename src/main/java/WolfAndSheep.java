@@ -10,6 +10,7 @@ public class WolfAndSheep {
         System.out.println("Witaj w Grze Wilk i Owca !!!!");
         System.out.println("by Emil Burdach and Piotr Sobota");
         System.out.println();
+        board.boardSizeQuestion(scanner);
         }
 
     }

@@ -1,12 +1,20 @@
 public class GameMaster {
     private int sheepCount;
     private int wolfCount;
-    public int howManySheeps(int boardSize){
+    Board board;
+
+    public GameMaster(Board board) {
+        sheepCount = howManySheeps(board.getBoardSize());
+        wolfCount = howManyWolfs(sheepCount);
+    }
+
+    private static int howManySheeps(int boardSize){
         return boardSize/2;
     }
-    public int howManyWolfs(){
+    private static int howManyWolfs(int sheepCount){
         return sheepCount < 4 ? 1 : sheepCount/4;
     }
+
     public void InitializeSheepsOnBoard(Board board){
         for(int i = 0 ; i < board.getBoardSize(); i++){
             if(i%2!=0){
@@ -14,6 +22,11 @@ public class GameMaster {
             }
         }
     }
+
+    public void InitializeWolfOnBoard(Board board){
+        Communication.askForWolfs(wolfCount,board);
+    }
+
 
     public void setSheepCount(int sheepCount) {
         this.sheepCount = sheepCount;

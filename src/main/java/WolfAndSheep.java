@@ -11,7 +11,7 @@ public class WolfAndSheep {
         System.out.println("Witaj w Grze Wilk i Owca !!!!");
         System.out.println("by Emil Burdach and Piotr Sobota");
         System.out.println();
-        board = new Board(Board.boardSizeQuestion(scanner));
+        board = new Board(Communication.boardSizeQuestion(scanner));
         gameMaster.setSheepCount(gameMaster.howManySheeps(board.getBoardSize()));
         gameMaster.setWolfCount(gameMaster.howManyWolfs());
         System.out.println(gameMaster.getSheepCount());

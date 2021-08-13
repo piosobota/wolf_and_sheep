@@ -24,13 +24,6 @@ public class BoardTest {
     }
 
     @Test
-    public void removeSheepTest() {
-        board.addSheep(1, 1);
-        board.removeSheep(1, 1);
-        Assert.assertEquals(' ', board.getField(1, 1));
-    }
-
-    @Test
     public void visual(){
         board.addSheep(5,5);
         board.viewBoard();

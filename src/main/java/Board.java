@@ -15,8 +15,16 @@ public class Board {
                 boardTable[i][j] = ' ';
     }
 
+    public char getField(int[] tab){
+        return getField(tab[0],tab[1]);
+    }
+    public void move(int[] firstlocation, int[] secondlocation){
+        boardTable[secondlocation[0]][secondlocation[1]] = boardTable[firstlocation[0]][firstlocation[1]];
+        boardTable[firstlocation[0]][firstlocation[1]] = ' ';
+    }
+
     public char getField(int x, int y) {
-        if(x>=boardSize || y>=boardSize)
+        if(x>=boardSize || y>=boardSize || x<0 || y<0 )
             return 0;
         else
             return boardTable[x][y];

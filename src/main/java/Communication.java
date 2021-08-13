@@ -40,8 +40,8 @@ public class Communication {
         int i = 0;
         while(i<wolfsCount){
             board.viewBoard();
-
             int pos;
+
             System.out.print("Gdzie chcesz wilka nr. " + (i+1) + "? Podaj indeks ostatniego wiersza : ");
             try {
                 char c = scanner.next().charAt(0);
@@ -55,7 +55,6 @@ public class Communication {
                 System.out.print("Musisz podać liczbę!");
                 continue;
             }
-            //pos-=1;
 
             if(pos%2 != 0){
                 System.out.println("Podana liczba musi być nieparzysta!");
@@ -77,5 +76,29 @@ public class Communication {
             board.addWolf(pos, board.getBoardSize()-1);
             i++;
         }
+    }
+
+    public static int[] askForMoveLocation(char player, Board board) {
+        int [] pos;
+
+        while(true){
+            String move = scanner.next();
+            try {
+                pos = convertLegendIntoNumbersLocation(move);
+            }
+            catch(Exception e){
+                System.out.println("Podaj poprawny kod!");
+                continue;
+            }
+
+            if(board.getField(pos[0], pos[1]) == 0){
+                System.out.println("Podaj pole mieszczące się w szachownicy!!!");
+                continue;
+            }
+
+            break;
+        }
+
+        return pos;
     }
 }

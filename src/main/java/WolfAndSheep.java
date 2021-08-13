@@ -11,6 +11,7 @@ public class WolfAndSheep {
         System.out.println();
         board = new Board(Communication.boardSizeQuestion(Communication.scanner));
         gameMaster = new GameMaster(board);
+        gameMaster.run();
     }
 
 }

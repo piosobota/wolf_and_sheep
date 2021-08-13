@@ -36,12 +36,12 @@ public class GameMaster {
         while(true){
             board.viewBoard();
             askForMove(players[iter%2]);
-            char winer = gameOver();
-            if(winer == 'o'){
+            char winner = whoWon();
+            if(winner == 'o'){
                 System.out.println("Wygrał gracz który grał owcami, gratulacje !!!");
                 return;
             }
-            if(winer == 'w'){
+            if(winner == 'w'){
                 System.out.println("Wygrł gracz który grał wilkiem, gratulacje !!!");
                 return;
             }
@@ -49,7 +49,26 @@ public class GameMaster {
         }
     }
 
-    private char gameOver() {
+    private char whoWon() {
+        for(int i=1;i<board.getBoardSize();i+=2){
+            if(board.getField(i, 0) == 'w') return 'w';
+        }
+
+        boolean canSheepMove = false, canWolfMove = false;
+
+        for(int x=0;x<board.getBoardSize();x++){
+            for(int y=0;y<board.getBoardSize();y++){
+                if(board.getField(x,y) != ' ') {
+                    if (isMoveAvailableAtAll(new int[]{x, y})){
+                        if(board.getField(x,y) == 'w') canWolfMove = true;
+                        else canSheepMove = true;
+                    }
+                }
+            }
+        }
+        if(!canSheepMove) return 'w';
+        if(!canWolfMove)  return 'o';
+
         return ' ';
     }
 
@@ -62,6 +81,10 @@ public class GameMaster {
                 firstLocation = Communication.askForMoveLocation(player, board);
                 if (board.getField(firstLocation) != player) {
                     System.out.println("Twój pionek tam nie stoi!!");
+                    continue;
+                }
+                if (!isMoveAvailableAtAll(firstLocation)) {
+                    System.out.println("Ten Pionek nie może się ruszyć :( ");
                     continue;
                 }
                 break;
@@ -95,6 +118,19 @@ public class GameMaster {
             return false;
         }
         return true;
+    }
+    private boolean isMoveAvailableAtAll(int [] firstLocation){
+        char leftupper = board.getField(firstLocation[0]-1,firstLocation[1]-1);
+        char rightupper = board.getField(firstLocation[0]+1,firstLocation[1]-1);
+        char leftdown = board.getField(firstLocation[0]-1,firstLocation[1]+1);
+        char rightdown = board.getField(firstLocation[0]+1,firstLocation[1]+1);
+        if(leftupper==' ' || rightdown == ' ' || leftdown == ' ' || rightupper == ' ' && board.getField(firstLocation) == 'w' ){
+            return true;
+        }
+        else if(leftdown == ' ' || rightdown == ' ' && board.getField(firstLocation)== 'o'){
+            return true;
+        }
+        return false;
     }
 
 

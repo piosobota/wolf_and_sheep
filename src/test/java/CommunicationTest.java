@@ -10,8 +10,4 @@ public class CommunicationTest extends TestCase {
         Assert.assertArrayEquals(new int[]{2,29}, Communication.convertLegendIntoNumbersLocation("C30"));
     }
 
-    public void testWolfQuestion(){
-        Board board = new Board(8);
-        Communication.askForWolfs(4,board);
-    }
 }
